@@ -17,4 +17,12 @@ final class Vocabulary
      * `$`-prefixed JSON Schema convention) so it is safe to persist in stores that reject `$` keys.
      */
     public const Id = '@id';
+
+    /**
+     * The dereference dispatch keyword — its VALUE is the target-engine handle ('composition',
+     * 'knowledge', …) a {@see DereferencerRegistry} resolves. Unprefixed and base-owned, like `@id`
+     * and JSON Schema's `$ref`: a cross-engine handle only works if the keyword carrying it means
+     * the same thing everywhere.
+     */
+    public const Dereference = 'x-dereference';
 }
