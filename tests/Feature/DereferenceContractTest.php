@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use Rushing\JsonReference\Dereferencer;
 use Rushing\JsonReference\DereferencerRegistry;
 use Rushing\JsonReference\Exceptions\UnexpectedRef;

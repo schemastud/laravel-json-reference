@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Rushing\JsonReference;
 
 use Rushing\JsonReference\Exceptions\UnknownDereferencer;
@@ -12,7 +10,7 @@ use Rushing\JsonReference\Exceptions\UnknownDereferencer;
  * {@see Vocabulary::Dereference} keyword off the grammar); the registry maps it to the dereferencer
  * that knows that target engine. Dispatch is by handle, never by node type.
  */
-final class DereferencerRegistry
+class DereferencerRegistry
 {
     /** @var array<string, Dereferencer> */
     private array $byHandle = [];

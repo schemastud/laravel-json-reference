@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Rushing\JsonReference;
 
 /**
@@ -9,4 +7,4 @@ namespace Rushing\JsonReference;
  * resident. The default policy a render walk carries so the dereference step is a pass-through
  * until a real (budgeted) policy and a store exist.
  */
-final class ResolveAll implements ResolutionPolicy {}
+class ResolveAll implements ResolutionPolicy {}

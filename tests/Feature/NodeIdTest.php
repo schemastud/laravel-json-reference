@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use Rushing\JsonReference\NodeId;
 use Rushing\JsonReference\Vocabulary;
 

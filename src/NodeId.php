@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Rushing\JsonReference;
 
 use Illuminate\Support\Str;
@@ -16,11 +14,11 @@ use Stringable;
  * changes its NodeId, and two nodes with identical content at different positions still get
  * distinct ids. Position lives on a separate axis (the kernel's `nodePath`).
  */
-final class NodeId implements Stringable
+class NodeId implements Stringable
 {
     public const Prefix = 'nod_';
 
-    private function __construct(public readonly string $value) {}
+    private function __construct(public string $value) {}
 
     /**
      * Mint a fresh, globally-unique identity. Random (not a content hash), so equal content at

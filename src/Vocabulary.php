@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Rushing\JsonReference;
 
 /**
@@ -10,7 +8,7 @@ namespace Rushing\JsonReference;
  * `x-swc-*` / `x-swk-*` namespacing; the vocabulary here stays unprefixed and base-owned so a
  * reference handle means the same thing across every engine.
  */
-final class Vocabulary
+class Vocabulary
 {
     /**
      * JSON-LD instance identity — the serialized form of a node's {@see NodeId}. `@id` (not the
