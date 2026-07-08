@@ -23,4 +23,19 @@ class Vocabulary
      * the same thing everywhere.
      */
     public const Dereference = 'x-dereference';
+
+    /**
+     * One-line descriptions of the base keywords this leaf owns, keyed by keyword string. The single
+     * authoritative source of the base vocabulary's *meaning* for tooling that describes it (e.g. the
+     * composition generation-grammar export unions these in) — the name lives on the const above, its
+     * meaning lives here, so neither is re-authored by a consuming engine.
+     *
+     * @return array<string, string>
+     */
+    public static function descriptions(): array
+    {
+        return [
+            self::Dereference => 'Base-owned, unprefixed dispatch handle (like $ref): names the Dereferencer that resolves this node. Shared across engines; canonical home is the laravel-json-reference leaf.',
+        ];
+    }
 }
