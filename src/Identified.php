@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
 /**
  * A node that carries a stable {@see NodeId}.

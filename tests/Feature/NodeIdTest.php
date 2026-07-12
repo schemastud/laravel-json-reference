@@ -1,7 +1,7 @@
 <?php
 
-use Rushing\JsonReference\NodeId;
-use Rushing\JsonReference\Vocabulary;
+use Schemastud\JsonReference\NodeId;
+use Schemastud\JsonReference\Vocabulary;
 
 it('mints opaque, prefixed, unique identities', function () {
     $a = NodeId::mint();

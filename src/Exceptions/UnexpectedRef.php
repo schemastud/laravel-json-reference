@@ -1,9 +1,9 @@
 <?php
 
-namespace Rushing\JsonReference\Exceptions;
+namespace Schemastud\JsonReference\Exceptions;
 
 use RuntimeException;
-use Rushing\JsonReference\Ref;
+use Schemastud\JsonReference\Ref;
 
 /**
  * Thrown when a {@see Ref} reaches a total-resolution site while everything is supposed to be

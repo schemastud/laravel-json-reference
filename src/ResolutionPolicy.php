@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
 /**
  * The access-time resolution policy — "for this operation, resolve this frontier, this deep."

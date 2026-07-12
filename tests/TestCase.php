@@ -1,9 +1,9 @@
 <?php
 
-namespace Rushing\JsonReference\Tests;
+namespace Schemastud\JsonReference\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Rushing\JsonReference\ServiceProvider;
+use Schemastud\JsonReference\ServiceProvider;
 use Spatie\LaravelData\LaravelDataServiceProvider;
 
 abstract class TestCase extends Orchestra

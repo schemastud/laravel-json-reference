@@ -1,14 +1,14 @@
 <?php
 
-use Rushing\JsonReference\Dereferencer;
-use Rushing\JsonReference\DereferencerRegistry;
-use Rushing\JsonReference\Exceptions\UnexpectedRef;
-use Rushing\JsonReference\Exceptions\UnknownDereferencer;
-use Rushing\JsonReference\NodeId;
-use Rushing\JsonReference\Ref;
-use Rushing\JsonReference\ResolutionPolicy;
-use Rushing\JsonReference\ResolveAll;
-use Rushing\JsonReference\Vocabulary;
+use Schemastud\JsonReference\Dereferencer;
+use Schemastud\JsonReference\DereferencerRegistry;
+use Schemastud\JsonReference\Exceptions\UnexpectedRef;
+use Schemastud\JsonReference\Exceptions\UnknownDereferencer;
+use Schemastud\JsonReference\NodeId;
+use Schemastud\JsonReference\Ref;
+use Schemastud\JsonReference\ResolutionPolicy;
+use Schemastud\JsonReference\ResolveAll;
+use Schemastud\JsonReference\Vocabulary;
 
 function stubRef(NodeId $id): Ref
 {

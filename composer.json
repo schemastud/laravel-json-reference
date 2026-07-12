@@ -1,5 +1,5 @@
 {
-    "name": "rushing/laravel-json-reference",
+    "name": "schemastud/laravel-json-reference",
     "description": "A node-type-agnostic JSON reference/identity leaf: NodeId (@id) instance identity plus the base cross-engine reference vocabulary every engine's resolution primitive builds on. Like JSON Schema's $ref, its keywords are unprefixed and base-owned.",
     "keywords": ["laravel", "json", "reference", "identity", "json-ld", "dereference"],
     "type": "library",
@@ -24,18 +24,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Rushing\\JsonReference\\": "src/"
+            "Schemastud\\JsonReference\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rushing\\JsonReference\\Tests\\": "tests/"
+            "Schemastud\\JsonReference\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Rushing\\JsonReference\\ServiceProvider"
+                "Schemastud\\JsonReference\\ServiceProvider"
             ]
         }
     },

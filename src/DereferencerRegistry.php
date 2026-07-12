@@ -1,8 +1,8 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
-use Rushing\JsonReference\Exceptions\UnknownDereferencer;
+use Schemastud\JsonReference\Exceptions\UnknownDereferencer;
 
 /**
  * Dispatch table for dereferencers, keyed by handle — the read-side mirror of how generate/ground

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
 /**
  * The read-side verb the engines lack: materialize a referenced node under a policy. Dispatched by

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
 /**
  * The base/standard reference vocabulary this leaf owns — the small set of cross-engine keywords

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
 /**
  * The v1 no-op policy: resolve everything, because there is no budget yet and every node is

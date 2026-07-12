@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference\Exceptions;
+namespace Schemastud\JsonReference\Exceptions;
 
 use RuntimeException;
 

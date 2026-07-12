@@ -1,6 +1,6 @@
 <?php
 
-namespace Rushing\JsonReference;
+namespace Schemastud\JsonReference;
 
 /**
  * A reference: an identity, nothing more. A node that names its target by {@see NodeId} instead of
