@@ -2,7 +2,6 @@
 
 namespace Schemastud\JsonReference;
 
-use Rushing\Popcorn\Registries\RegistryIndex;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -23,16 +22,5 @@ class ServiceProvider extends PackageServiceProvider
         $this->app->singletonIf(DereferencerRegistry::class);
     }
 
-    public function packageBooted(): void
-    {
-        // Declaring and indexing are two acts (registry-kernel ticket 21 D1). This package DECLARES
-        // the registry and does not BIND it — laravel-composition-engine owns the singleton, and
-        // tower and the host each extend it with their own handles. Describing does not require
-        // binding (ticket 04 D10), so the owner of the class describes it, from its own boot, after
-        // every provider's register() has run and therefore after every `extend()` that fills it.
-        $this->app->make(RegistryIndex::class)->describe(
-            $this->app->make(DereferencerRegistry::class),
-            by: self::class,
-        );
-    }
+    public function packageBooted(): void {}
 }
