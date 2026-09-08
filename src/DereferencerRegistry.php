@@ -6,7 +6,7 @@ use Rushing\Popcorn\Registries\Authorizer;
 use Rushing\Popcorn\Registries\BasicRegistry;
 use Rushing\Popcorn\Registries\Gated;
 use Rushing\Popcorn\Registries\IsRegistry;
-use Rushing\Popcorn\Registries\OnDuplicate;
+use Rushing\Popcorn\Registries\OnKeyDuplicate;
 use Rushing\Popcorn\Registries\Registry;
 use Rushing\Popcorn\Registries\RegistryKey;
 use Schemastud\JsonReference\Exceptions\UnknownDereferencer;
@@ -22,7 +22,7 @@ use Schemastud\JsonReference\Exceptions\UnknownDereferencer;
 #[IsRegistry(
     root: 'jsonref.dereferencers',
     entryType: Dereferencer::class,
-    onDuplicate: OnDuplicate::Supersede,
+    onKeyDuplicate: OnKeyDuplicate::Supersede,
     description: 'dereferencers keyed by handle (fragment-corpus, web-page, federated-corpus, conduit) — the read side of a `$ref`, where the handle names the target engine rather than the node shape. The registrants live above this package and in other vendors — six dereferencers across two vendors register here, and the package that BINDS the singleton (laravel-composition-engine) is not this one. Declaring is nonetheless this package\'s, because the class is: describing does not require binding (registry-kernel ticket 04 D10).',
     order: 52,
 )]
