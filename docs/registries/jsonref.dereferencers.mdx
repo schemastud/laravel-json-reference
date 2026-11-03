@@ -1,0 +1,94 @@
+---
+title: Dereferencers
+segment: jsonref.dereferencers
+nav_order: 52
+excerpt: Who follows a reference: one dereferencer per handle, each knowing one place references can point.
+---
+
+# Dereferencers
+
+A reference in this family points at a node by its `@id`, and it carries a **handle** naming who
+can follow it: a corpus of fragments, a web page, another tenant's knowledge, a configuration
+schema. `jsonref.dereferencers` maps each handle to the **dereferencer** that knows how to resolve
+references of that kind. Resolution dispatches on the handle alone, never on what shape the node
+happens to have.
+
+{/* registry-facts:start — generated from the #[IsRegistry] declaration by `splicewire:beam:docs:registries:scaffold`. Rerun the command; do not edit between these markers. */}
+
+- **Root:** `jsonref.dereferencers`
+- **Entries:** `Schemastud\JsonReference\Dereferencer`
+- **Duplicate keys:** Supersede — a later registration under a taken key replaces the earlier entry, in its place
+- **Population:** Optional — an empty registry is normal
+- **Order:** `52` (display order, ascending)
+- **Declared by:** `Schemastud\JsonReference\DereferencerRegistry`
+
+{/* registry-facts:end */}
+
+## What a dereferencer is
+
+A `Dereferencer` has two methods: `handle()`, the name it answers for, and `dereference()`, which
+takes a `Ref` (anything with a `target()` `NodeId`) and a `ResolutionPolicy`, and returns whatever
+the reference resolves to.
+
+```php
+use Schemastud\JsonReference\Dereferencer;
+use Schemastud\JsonReference\Ref;
+use Schemastud\JsonReference\ResolutionPolicy;
+
+final class ArticleDereferencer implements Dereferencer
+{
+    public function handle(): string
+    {
+        return 'articles';
+    }
+
+    public function dereference(Ref $ref, ResolutionPolicy $policy): mixed
+    {
+        return Article::where('node_id', (string) $ref->target())->firstOrFail();
+    }
+}
+```
+
+In a JSON document, the `x-dereference` keyword carries the handle beside the node's `@id`, so a
+reader can tell which dereferencer to ask without knowing anything else about the node.
+
+## Registering
+
+This package binds a shared, empty registry, and only if nothing else has. Other packages and your
+application add to that one instance by extending the binding. Registering a dereferencer keys it
+by its own `handle()`:
+
+```php
+use Schemastud\JsonReference\DereferencerRegistry;
+
+public function register(): void
+{
+    $this->app->extend(DereferencerRegistry::class, fn (DereferencerRegistry $registry, $app) => $registry
+        ->register($app->make(ArticleDereferencer::class)));
+}
+```
+
+`extend()` runs when the registry is first resolved, so registrations stay lazy, and a
+dereferencer with constructor dependencies can be built from the container.
+
+The duplicate policy is **supersede**: a dereferencer registered under a handle that is taken
+replaces the earlier one, which is how an application overrides a package's resolver for a handle.
+
+## Reading it
+
+`for($handle)` returns the dereferencer for a handle, or throws `UnknownDereferencer`. Catch that
+exception by name to turn an unknown handle from a request into a client error rather than a
+server error. `handles()` lists the registered handles.
+
+## Related registries
+
+- [`schema-org.projectors`](https://github.com/schemastud/laravel-data-schema-org/blob/main/docs/registries/schema-org.projectors.mdx)
+  — the same dispatch-by-key shape, for schema.org projection.
+- [The schemas cluster](https://github.com/schemastud/laravel-data-schemas/blob/main/docs/registries/schemas.mdx)
+  — the schema substrate this sits beside.
+
+## Going deeper
+
+[Popcorn registries](/beam/docs/foundations/registries) explains roots, keys and duplicate policies
+in general. The registry's source is
+[`DereferencerRegistry`](https://github.com/schemastud/laravel-json-reference/blob/main/src/DereferencerRegistry.php).
