@@ -19,3 +19,10 @@ The vocabulary, one file each under `src/`:
 Engines (circuit/knowledge/grounding spines and their kin) register their own dereferencers over
 this leaf rather than re-inventing identity. Start with [`AGENTS.md`](AGENTS.md); the contract
 docblocks are the reference. Tests live in `tests/` (no `composer test` script yet — run the installed PHPUnit/Pest runner directly).
+
+## Registries
+
+This package declares one registry:
+
+- [`jsonref.dereferencers`](docs/registries/jsonref.dereferencers.mdx): the dereferencer for each
+  handle, each one knowing one place a reference can point.
