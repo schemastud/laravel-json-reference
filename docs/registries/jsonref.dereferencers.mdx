@@ -73,8 +73,9 @@ public function register(): void
 `extend()` runs when the registry is first resolved, so registrations stay lazy, and a
 dereferencer with constructor dependencies can be built from the container.
 
-The duplicate policy is **supersede**: a dereferencer registered under a handle that is taken
-replaces the earlier one, which is how an application overrides a package's resolver for a handle.
+The [**duplicate-key policy**](/beam/docs/foundations/registries#key-policies) is
+**supersede**: a dereferencer registered under a handle that is taken replaces the earlier one,
+which is how an application overrides a package's resolver for a handle.
 
 ## Reading it
 
