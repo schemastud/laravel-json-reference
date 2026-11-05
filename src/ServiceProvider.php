@@ -2,11 +2,20 @@
 
 namespace Schemastud\JsonReference;
 
+use Rushing\Popcorn\Registries\ScopesRegistrant;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class ServiceProvider extends PackageServiceProvider
 {
+    use ScopesRegistrant;
+
+    /** Every registry write in register()/boot() that names no `$by` records this package. */
+    protected function registrant(): string
+    {
+        return 'schemastud/laravel-json-reference';
+    }
+
     public function configurePackage(Package $package): void
     {
         $package->name('laravel-json-reference');
