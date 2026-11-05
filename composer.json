@@ -64,7 +64,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "pint": "@php -d memory_limit=512M vendor/bin/pint"
+        "pint": "@php -d memory_limit=512M vendor/bin/pint",
+        "docs:examples": "@php tests/regenerate-data-examples.php"
     },
     "repositories": [
         {

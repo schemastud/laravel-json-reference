@@ -1,0 +1,16 @@
+{
+    "keys": [
+        "jsonref.dereferencers.articles"
+    ],
+    "handles": [
+        "articles"
+    ],
+    "node": {
+        "@id": "nod_01JC0ARTICLE0000000000002",
+        "x-dereference": "articles"
+    },
+    "resolved": {
+        "@id": "nod_01JC0ARTICLE0000000000002",
+        "title": "Why handles, not shapes"
+    }
+}

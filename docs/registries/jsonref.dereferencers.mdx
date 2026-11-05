@@ -83,6 +83,90 @@ which is how an application overrides a package's resolver for a handle.
 exception by name to turn an unknown handle from a request into a client error rather than a
 server error. `handles()` lists the registered handles.
 
+## Following a reference, captured
+
+This example registers a dereferencer for the `articles` handle, then follows a node that names an
+article by its `@id`. The registry's keys come back absolute (`jsonref.dereferencers.articles`),
+while `handles()` gives them back as you registered them. The JSON below is the real output of the
+PHP beside it: the package captures it, and its test suite re-runs the example on every run, so
+the two can't drift apart.
+
+{/* data-example:start follow-a-reference — captured output; regenerate it, do not edit between these markers. */}
+
+<DataExample source="docs/registries/examples/jsonref.dereferencers/follow-a-reference.php">
+
+```php
+use Schemastud\JsonReference\Dereferencer;
+use Schemastud\JsonReference\DereferencerRegistry;
+use Schemastud\JsonReference\NodeId;
+use Schemastud\JsonReference\Ref;
+use Schemastud\JsonReference\ResolutionPolicy;
+use Schemastud\JsonReference\ResolveAll;
+use Schemastud\JsonReference\Vocabulary;
+
+// A dereferencer for the `articles` handle. A real one would query a store; this one holds two articles.
+$articles = new class implements Dereferencer
+{
+    public function handle(): string
+    {
+        return 'articles';
+    }
+
+    public function dereference(Ref $ref, ResolutionPolicy $policy): mixed
+    {
+        return [
+            'nod_01JC0ARTICLE0000000000001' => ['@id' => 'nod_01JC0ARTICLE0000000000001', 'title' => 'Shipping the schema loop'],
+            'nod_01JC0ARTICLE0000000000002' => ['@id' => 'nod_01JC0ARTICLE0000000000002', 'title' => 'Why handles, not shapes'],
+        ][(string) $ref->target()];
+    }
+};
+
+$registry = app(DereferencerRegistry::class)->register($articles);
+
+// The node a document carries in place of the article: its @id, and the handle that can follow it.
+$node = [Vocabulary::Id => 'nod_01JC0ARTICLE0000000000002', Vocabulary::Dereference => 'articles'];
+
+$ref = new class(NodeId::fromString($node[Vocabulary::Id])) implements Ref
+{
+    public function __construct(private NodeId $id) {}
+
+    public function target(): NodeId
+    {
+        return $this->id;
+    }
+};
+
+return [
+    'keys' => array_map('strval', $registry->keys()),
+    'handles' => $registry->handles(),
+    'node' => $node,
+    'resolved' => $registry->for($node[Vocabulary::Dereference])->dereference($ref, new ResolveAll),
+];
+```
+
+```json
+{
+    "keys": [
+        "jsonref.dereferencers.articles"
+    ],
+    "handles": [
+        "articles"
+    ],
+    "node": {
+        "@id": "nod_01JC0ARTICLE0000000000002",
+        "x-dereference": "articles"
+    },
+    "resolved": {
+        "@id": "nod_01JC0ARTICLE0000000000002",
+        "title": "Why handles, not shapes"
+    }
+}
+```
+
+</DataExample>
+
+{/* data-example:end follow-a-reference */}
+
 ## Related registries
 
 - [`schema-org.projectors`](https://github.com/schemastud/laravel-data-schema-org/blob/main/docs/registries/schema-org.projectors.mdx)
