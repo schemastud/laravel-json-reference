@@ -104,7 +104,7 @@ use Schemastud\JsonReference\ResolutionPolicy;
 use Schemastud\JsonReference\ResolveAll;
 use Schemastud\JsonReference\Vocabulary;
 
-// A dereferencer for the `articles` handle. A real one would query a store; this one holds two articles.
+// A dereferencer for the `articles` handle. A real one would query a store by the node's @id.
 $articles = new class implements Dereferencer
 {
     public function handle(): string
@@ -114,10 +114,7 @@ $articles = new class implements Dereferencer
 
     public function dereference(Ref $ref, ResolutionPolicy $policy): mixed
     {
-        return [
-            'nod_01JC0ARTICLE0000000000001' => ['@id' => 'nod_01JC0ARTICLE0000000000001', 'title' => 'Shipping the schema loop'],
-            'nod_01JC0ARTICLE0000000000002' => ['@id' => 'nod_01JC0ARTICLE0000000000002', 'title' => 'Why handles, not shapes'],
-        ][(string) $ref->target()];
+        return ['@id' => (string) $ref->target(), 'title' => 'Why handles, not shapes'];
     }
 };
 
